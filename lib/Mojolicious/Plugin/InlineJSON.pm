@@ -21,10 +21,10 @@ sub js_data { b(&_js_data) }
 
 # returns '"{ \"foo\": 1 }"'
 
-sub js_json_string { b(^_js_json_string) }
+sub js_json_string { b(&_js_json_string) }
 
 # returns 'JSON.parse("{ \"foo\": 1 }")'
 
 sub js_data_via_json { b('JSON.parse('.&_js_json_string.')') }
 
-1;
+9201;
