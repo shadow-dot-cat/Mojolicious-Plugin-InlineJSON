@@ -3,6 +3,7 @@ package Mojolicious::Plugin::InlineJSON;
 use Mojo::Base 'Mojolicious::Plugin';
 use Mojo::ByteStream qw(b);
 use Mojo::JSON qw(encode_json);
+use Mojo::Util qw(xml_escape);
 
 sub register {
   my ($self, $app) = @_;
@@ -11,9 +12,11 @@ sub register {
   $app->helper(js_data_via_json => \&js_data_via_json);
 }
 
-sub _js_data { encode_json($_[1]) =~ s/>/\\>/gr }
+sub _escape_tag { $_[0] =~ s/>/\\>/gr }
 
-sub _js_json_string { encode_json(&_js_data) }
+sub _js_data { _escape_tag(encode_json($_[1]))  }
+
+sub _js_json_string { _escape_tag(encode_json(encode_json($_[1]))) }
 
 # returns '{ "foo": 1 }'
 
