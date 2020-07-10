@@ -1,0 +1,43 @@
+#! /usr/bin/env perl
+use Mojolicious::Lite;
+use lib 'lib';
+
+plugin 'InlineJSON';
+
+get '/test' => sub {
+  my $c = shift;
+  $c->stash( the_data => { your => 'fez', is => 'smelly>' });
+  $c->render;
+}, 'test';
+
+
+app->start;
+
+__DATA__
+
+@@test.html.ep
+<head>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+  <div id="app">
+    <h1> Using js_data </h1>
+    <div v-for="(val, key) in jsData" :key="key">
+      The key is "{{ key }}" and the value is "{{ val }}"
+    </div>
+    <hr>
+    <h1> Using js_data_via_json </h1>
+    <div v-for="(val, key) in jsonData" :key="key">
+      The key is "{{ key }}" and the value is "{{ val }}"
+    </div>
+  </div>
+</body>
+<script>
+  var app = new Vue({
+    el: '#app',
+    data: {
+      jsData: <%== js_data($the_data) %>,
+      jsonData: <%== js_data_via_json($the_data) %>
+    }
+  })
+</script>
