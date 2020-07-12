@@ -1,10 +1,9 @@
 #! /usr/bin/env perl
 use Mojolicious::Lite;
-use lib 'lib';
 
 plugin 'InlineJSON';
 
-get '/test' => sub {
+get '/' => sub {
   my $c = shift;
   $c->stash( the_data => { your => 'fez', is => 'smelly>' });
   $c->render;
@@ -22,13 +21,15 @@ __DATA__
 <body>
   <div id="app">
     <h1> Using js_data </h1>
-    <div v-for="(val, key) in jsData" :key="key">
-      The key is "{{ key }}" and the value is "{{ val }}"
+    <div id="js-data" v-for="(val, key) in jsData" :key="key">
+      The key is <span :class="key"> "{{ key }}" </span>
+        and the value is <span :class="val"> "{{ val }}" </val>
     </div>
     <hr>
     <h1> Using js_data_via_json </h1>
-    <div v-for="(val, key) in jsonData" :key="key">
-      The key is "{{ key }}" and the value is "{{ val }}"
+    <div id="js-data-via-json" v-for="(val, key) in jsonData" :key="key">
+      The key is <span class="key"> "{{ key }}" </span>
+        and the value is <span class="val"> "{{ val }}" </val>
     </div>
   </div>
 </body>
