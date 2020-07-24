@@ -31,3 +31,24 @@ sub js_json_string { b(&_js_json_string) }
 sub js_data_via_json { b('JSON.parse('.&_js_json_string.')') }
 
 9201;
+
+=encoding utf8
+
+=head1 NAME
+ 
+Mojolicious::Plugin::InlineJSON - Bootstrap your app with inline JSON
+
+=head1 SYNOPSIS
+
+  # Mojolicious
+  use Mojolicious;
+  $app->plugin('InlineJSON');
+
+  # Mojolicious::Lite
+  plugin 'InlineJSON';
+
+  # then, in a template (using Vue 2.0)
+  <script>
+     var data =  <%= js_data($some_stash_value) %>
+  </script>
+

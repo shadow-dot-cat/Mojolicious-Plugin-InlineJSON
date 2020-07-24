@@ -57,8 +57,8 @@ __DATA__
   var app = new Vue({
     el: '#app',
     data: {
-      jsData: <%== js_data($the_data) %>,
-      jsonData: <%== js_data_via_json($the_data) %>
+      jsData: <%= js_data($the_data) %>,
+      jsonData: <%= js_data_via_json($the_data) %>
     }
   })
 </script>
