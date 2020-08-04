@@ -79,7 +79,7 @@ variety of different ways.
 
   <script> 
     var prerenderedData = <%= js_data($important_stuff) %>
-    // ...the rest of your JS
+    // ...
   </script>
 
 C<js_data> will render the perl data structure passed to it into a
@@ -96,3 +96,38 @@ into
 
 while making sure to avoid any attribute escaping or accidental
 tag closure.
+
+=head2 js_json_string
+
+  <script>
+     var jsonString = <%= js_json_string($important_stuff) %>
+     var decoded = JSON.parse(jsonString)
+     // ...
+  <script>
+
+C<js_json_string> will turn the perl data structure into JSON, and
+then turn that into a string which can be parsed with
+C<JSON.parse()> in JS. This can be useful for places where your
+code would've expected an XHR that you decode.
+
+=head2 js_data_via_json
+
+  <script>
+     var decodedData = <%= js_data_via_json($important_stuff) %>
+     // ...
+  <script>
+
+C<js_data_via_json> is similar to C<js_json_string>, but it also
+does the JSON.parse for you.
+
+=head1 AUTHOR
+
+=over 4
+
+=item Matt S Trout - C<mstrout@cpan.org>
+
+=item Veesh Goldman - C<veesh@cpan.org>
+
+=back
+
+=cut
