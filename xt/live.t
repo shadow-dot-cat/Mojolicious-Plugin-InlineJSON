@@ -4,9 +4,15 @@ plugin 'InlineJSON';
 
 get '/' => sub {
   my $c = shift;
-  $c->stash( the_data => { your => 'fez', is => 'smelly>' });
+  $c->stash( the_data => { your => 'fez', is => '> 5' });
   $c->render;
 }, 'test';
+
+get '/arrayref' => sub {
+  my $c = shift;
+  $c->stash( the_data => [ your => 'fez' ]);
+  $c->render('test');
+};
 
 use Mojo::Base -strict;
 use Test::Mojo;
@@ -23,9 +29,18 @@ for my $type (qw/js-data js-data-via-json/) {
   $t->live_text_is("#$type-your .key", '"your"')
     ->live_text_is("#$type-your .val", '"fez"')
     ->live_text_is("#$type-is .key", '"is"')
-    ->live_text_is("#$type-is .val", '"smelly>"');
+    ->live_text_is("#$type-is .val", '"> 5"');
 }
 
+$t->navigate_ok('/arrayref')
+  ->wait_for('#js-data-0');
+
+for my $type (qw/js-data js-data-via-json/) {
+  $t->live_text_is("#$type-0 .key", '"0"')
+    ->live_text_is("#$type-0 .val", '"your"')
+    ->live_text_is("#$type-1 .key", '"1"')
+    ->live_text_is("#$type-1 .val", '"fez"');
+}
 
 
 

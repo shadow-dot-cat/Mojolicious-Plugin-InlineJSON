@@ -1,5 +1,7 @@
 package Mojolicious::Plugin::InlineJSON;
 
+our $VERSION = 0.1;
+
 use Mojo::Base 'Mojolicious::Plugin';
 use Mojo::ByteStream qw(b);
 use Mojo::JSON qw(encode_json);
@@ -38,6 +40,10 @@ sub js_data_via_json { b('JSON.parse('.&_js_json_string.')') }
  
 Mojolicious::Plugin::InlineJSON - Bootstrap your app with inline JSON
 
+=head1 VERSION
+
+0.1
+
 =head1 SYNOPSIS
 
   # Mojolicious
@@ -47,8 +53,46 @@ Mojolicious::Plugin::InlineJSON - Bootstrap your app with inline JSON
   # Mojolicious::Lite
   plugin 'InlineJSON';
 
-  # then, in a template (using Vue 2.0)
+  # in your controller
+  $c->stash(important_stuff => { data => [ ... ] });
+
+  # then, in a template
   <script>
-     var data =  <%= js_data($some_stash_value) %>
+     // bootstrap with literal JSON
+     var prerenderedData =  <%= js_data($important_stuff) %>
   </script>
 
+
+=head1 DESCRIPTION
+
+L<Mojolicious::Plugin::InlineJSON> is a L<Mojolicious plugin|Mojolicious::Plugin>
+for rendering data to json in a template. This is useful for when
+you want to serve content managed dynamically by javascript
+without needing any extra AJAX calls after the page loads.
+
+This plugin provides 3 different helpers for rendering JSON in a
+variety of different ways.
+
+=head1 HELPERS
+
+=head2 js_data
+
+  <script> 
+    var prerenderedData = <%= js_data($important_stuff) %>
+    // ...the rest of your JS
+  </script>
+
+C<js_data> will render the perl data structure passed to it into a
+literal javascript structure, capable of beind directly consumed
+by javascript.
+
+In essence, it turns this
+
+  { key => 'value' }
+
+into 
+ 
+  { key: 'value' }
+
+while making sure to avoid any attribute escaping or accidental
+tag closure.
