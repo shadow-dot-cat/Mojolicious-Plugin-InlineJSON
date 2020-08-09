@@ -40,10 +40,6 @@ sub js_data_via_json { b('JSON.parse('.&_js_json_string.')') }
  
 Mojolicious::Plugin::InlineJSON - Bootstrap your app with inline JSON
 
-=head1 VERSION
-
-0.1
-
 =head1 SYNOPSIS
 
   # Mojolicious
@@ -83,7 +79,7 @@ variety of different ways.
   </script>
 
 C<js_data> will render the perl data structure passed to it into a
-literal javascript structure, capable of beind directly consumed
+literal javascript structure, capable of being directly consumed
 by javascript.
 
 In essence, it turns this
