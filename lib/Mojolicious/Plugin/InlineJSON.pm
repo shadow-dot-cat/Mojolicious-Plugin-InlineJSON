@@ -116,7 +116,7 @@ code would've expected an XHR that you decode.
 C<js_data_via_json> is similar to C<js_json_string>, but it also
 does the JSON.parse for you.
 
-=head1 AUTHOR
+=head1 AUTHORS
 
 =over 4
 
@@ -125,5 +125,19 @@ does the JSON.parse for you.
 =item Veesh Goldman - C<veesh@cpan.org>
 
 =back
+
+=head1 CONTRIBUTORS
+
+None yet - maybe this software is perfect! (ahahahahahahahahaha)
+
+=head1 COPYRIGHT
+
+Copyright (c) 2020 the Mojolicious::Plugin::InlineJSON L</AUTHORS> and L</CONTRIBUTORS>
+as listed above.
+
+=head1 LICENSE
+
+This library is free software and may be distributed under the same terms
+as perl itself.
 
 =cut
