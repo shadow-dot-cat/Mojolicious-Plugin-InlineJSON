@@ -120,9 +120,9 @@ does the JSON.parse for you.
 
 =over 4
 
-=item Matt S Trout - C<mstrout@cpan.org>
+=item mst - Matt S. Trout (cpan:MSTROUT) C<mst@shadowcat.co.uk>
 
-=item Veesh Goldman - C<veesh@cpan.org>
+=item veesh - Veesh Goldman (cpan:VEESH) C<veesh@cpan.org>
 
 =back
 
