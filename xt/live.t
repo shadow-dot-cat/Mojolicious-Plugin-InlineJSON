@@ -1,3 +1,9 @@
+use Test::More (
+  eval { require Test::Mojo::Role::Selenium; 1 }
+    ? ()
+    : skip_all => 'This test requires Test::Mojo::Role::Selenium'
+);
+
 use Mojolicious::Lite;
 
 plugin 'InlineJSON';
@@ -16,7 +22,6 @@ get '/arrayref' => sub {
 
 use Mojo::Base -strict;
 use Test::Mojo;
-use Test::More;
 use Mojo::File qw/curfile/;
 
 my $t = Test::Mojo->with_roles('+Selenium')
