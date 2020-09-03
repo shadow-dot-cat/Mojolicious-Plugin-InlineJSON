@@ -1,7 +1,6 @@
 Revision history for Mojolicious-Plugin-InlineJSON
 
 1.000_000 - 2020-09-03
-1.000_000 - 2020-09-03
   - Make 5.14 requirement (inherited from Mojolicious) explicit
 
 0.009_001 - 2020-08-27
