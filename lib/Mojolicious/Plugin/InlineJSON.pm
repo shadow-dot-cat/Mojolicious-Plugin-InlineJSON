@@ -1,6 +1,7 @@
 package Mojolicious::Plugin::InlineJSON;
 
 our $VERSION = '0.009_001'; # 0.9.1
+$VERSION = eval $VERSION;
 
 use Mojo::Base 'Mojolicious::Plugin';
 use Mojo::ByteStream qw(b);
