@@ -1,7 +1,7 @@
 use Test::More (
   eval { require Test::Mojo::Role::Selenium; 1 }
     ? ()
-    : skip_all => 'This test requires Test::Mojo::Role::Selenium'
+    : ( skip_all => 'This test requires Test::Mojo::Role::Selenium' )
 );
 
 use Mojolicious::Lite;
