@@ -1,6 +1,6 @@
 package Mojolicious::Plugin::InlineJSON;
 
-our $VERSION = '0.009_001'; # 0.9.1
+our $VERSION = '1.000_000'; # 1.0.0
 $VERSION = eval $VERSION;
 
 use Mojo::Base 'Mojolicious::Plugin';
